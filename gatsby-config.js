@@ -1,10 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Tawa Christadelphian Ecclesia`,
+    description: `For as truly as I live all the earth shall be filled with the glory of Yahweh`,
+    author: `Joshua Gore`,
   },
   plugins: [
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-image`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,

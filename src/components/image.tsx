@@ -1,6 +1,11 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import {
+    GatsbyImage,
+    getImage,
+    GatsbyImageProps,
+    IGatsbyImageData,
+} from 'gatsby-plugin-image';
 
 /*
  * This component is built using `gatsby-image` to automatically serve optimized
@@ -12,25 +17,41 @@ import Img from "gatsby-image"
  * - `gatsby-image`: https://gatsby.dev/gatsby-image
  * - `useStaticQuery`: https://www.gatsbyjs.com/docs/use-static-query/
  */
-
-const Image = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      placeholderImage: file(relativePath: { eq: "bible_open_table.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 800, quality: 100) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `)
-
-  if (!data?.placeholderImage?.childImageSharp?.fluid) {
-    return <div>Picture not found</div>
-  }
-
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+interface IImage {
+    style?: React.CSSProperties;
+    imgStyle?: React.CSSProperties;
 }
 
-export default Image
+const Image: React.FC<IImage> = ({ style, imgStyle }) => {
+    const data = useStaticQuery(graphql`
+        query {
+            placeholderImage: file(
+                relativePath: { eq: "bible_open_table.jpg" }
+            ) {
+                childImageSharp {
+                    gatsbyImageData(
+                        layout: FULL_WIDTH
+                        quality: 100
+                        width: 1080
+                    )
+                }
+            }
+        }
+    `);
+    console.log(data);
+
+    if (!data?.placeholderImage?.childImageSharp?.gatsbyImageData) {
+        return <div>Picture not found</div>;
+    }
+
+    return (
+        <GatsbyImage
+            style={style}
+            imgStyle={imgStyle}
+            image={data.placeholderImage.childImageSharp.gatsbyImageData}
+            alt="default image"
+        />
+    );
+};
+
+export default Image;

@@ -1,28 +1,61 @@
 import React from 'react';
 import { graphql, Link, PageProps } from 'gatsby';
+import {
+    ContentfulRichTextGatsbyReference,
+    renderRichText,
+    RenderRichTextData,
+} from 'gatsby-source-contentful/rich-text';
 
-import { Paper, Typography, Button, Grid, TextField } from '@material-ui/core';
+import {
+    Paper,
+    Typography,
+    Button,
+    Grid,
+    TextField,
+    Container,
+} from '@material-ui/core';
+
+import {
+    GatsbyImage,
+    getImage,
+    GatsbyImageProps,
+    IGatsbyImageData,
+} from 'gatsby-plugin-image';
 
 import Layout from '../../components/layout';
 import SEO from '../../components/seo';
+import FullBleedHeading from '../../components/fullBleedHeading';
 
 interface ArticlePageProps extends PageProps {
     data: {
         contentfulPost: {
             slug: string;
             title: string;
+            summary: {
+                summary: string;
+            };
             body: {
                 raw: string;
-            }
-        }
-    }
+                references: [];
+            };
+            splashImage: { gatsbyImageData: IGatsbyImageData; title: string };
+        };
+    };
 }
 
 const IndexPage: React.FC<ArticlePageProps> = ({ data }) => {
     return (
         <Layout>
-            <SEO title="Home" />
-            {data.contentfulPost.body.raw}
+            <SEO title={data.contentfulPost.title} />
+            <FullBleedHeading
+                title={data.contentfulPost.title}
+                subtitle={data.contentfulPost.summary.summary}
+                image={data.contentfulPost.splashImage.gatsbyImageData}
+                alt={data.contentfulPost.splashImage.title}
+            />
+            <Container disableGutters={true}>
+                <Paper>{renderRichText(data.contentfulPost.body)}</Paper>
+            </Container>
         </Layout>
     );
 };
@@ -34,8 +67,15 @@ export const query = graphql`
         contentfulPost(id: { eq: $id }) {
             slug
             title
+            summary {
+                summary
+            }
             body {
                 raw
+            }
+            splashImage {
+                gatsbyImageData(width: 1920, layout: FULL_WIDTH, quality: 100, resizingBehavior: FILL)
+                title
             }
         }
     }
