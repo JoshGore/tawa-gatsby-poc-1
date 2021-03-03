@@ -16,9 +16,11 @@ const Header = ({ siteTitle }: { siteTitle: string }) => (
                     marginRight: 40,
                     marginTop: 0,
                     marginBottom: 0,
+                    cursor: 'pointer'
                 }}
+                onClick={() => navigate('/')}
             />
-            <Typography variant="h3" style={{ color: '#404040' }}>
+            <Typography variant="h3" style={{ color: '#404040', cursor: 'pointer' }} onClick={() => navigate('/')}>
                 {siteTitle}
             </Typography>
             <Button onClick={() => navigate('/articles')}><Typography variant="h6">Articles</Typography></Button>
