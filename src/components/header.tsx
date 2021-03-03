@@ -1,6 +1,6 @@
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import React from 'react';
-import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Typography, Button } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import LogoBible from '../images/bible.svg';
 // color 61, 142, 255
@@ -21,6 +21,7 @@ const Header = ({ siteTitle }: { siteTitle: string }) => (
             <Typography variant="h3" style={{ color: '#404040' }}>
                 {siteTitle}
             </Typography>
+            <Button onClick={() => navigate('/articles')}><Typography variant="h6">Articles</Typography></Button>
             <div style={{ marginLeft: 'auto', marginRight: 0 }}>
                 <IconButton edge="end">
                     <MenuIcon style={{height: 50, width: 50}} />
