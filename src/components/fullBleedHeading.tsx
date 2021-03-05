@@ -11,8 +11,9 @@ import {
 interface IFullBleedHeading {
     title: string;
     subtitle: string;
-    image?: IGatsbyImageData;
+    image: IGatsbyImageData;
     alt?: string;
+    textColor?: string;
 }
 
 const FullBleedHeading: React.FC<IFullBleedHeading> = ({
@@ -20,6 +21,7 @@ const FullBleedHeading: React.FC<IFullBleedHeading> = ({
     subtitle,
     image,
     alt,
+    textColor,
 }) => {
     return (
         <div
@@ -33,26 +35,18 @@ const FullBleedHeading: React.FC<IFullBleedHeading> = ({
                 overflow: 'hidden',
             }}
         >
-            {!image && (
-                <Image
-                    style={{ width: '100%', height: '100%' }}
-                    imgStyle={{ objectFit: 'cover' }}
-                />
-            )}
-            {image && (
-                <GatsbyImage
-                    image={image}
-                    alt={alt || ''}
-                    style={{ width: '100%', height: '100%' }}
-                    imgStyle={{ objectFit: 'cover' }}
-                />
-            )}
+            <GatsbyImage
+                image={image}
+                alt={alt || ''}
+                style={{ width: '100%', height: '100%' }}
+                imgStyle={{ objectFit: 'cover' }}
+            />
             <div
                 style={{
                     position: 'absolute',
                     bottom: 0,
                     margin: '20px',
-                    color: 'white',
+                    color: textColor,
                 }}
             >
                 <Typography variant="h1">{title}</Typography>

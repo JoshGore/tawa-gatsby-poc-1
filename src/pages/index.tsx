@@ -13,11 +13,13 @@ import {
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Event from '../components/event';
-import FullBleedHeading from '../components/fullBleedHeading';
+import Heading from '../components/heading';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 
 interface IndexPageProps extends PageProps {
     data: {
         contentfulPage: {
+            splashImage?: { gatsbyImageData: IGatsbyImageData; title: string };
             title: string;
             subtitle: {
                 subtitle: string;
@@ -57,11 +59,14 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
     return (
         <Layout>
             <SEO title="Home" />
-            <FullBleedHeading
+            <Heading
                 title={'Lorem ipsum dolor sit amet'}
                 subtitle={
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Erat nam at lectus urna. Arcu dictum varius duis at consectetur lorem.'
                 }
+                type={'full bleed'}
+                textColor="white"
+                image={data.contentfulPage.splashImage?.gatsbyImageData}
             />
             <Container disableGutters={true}>
                 <Paper style={{ width: '100%' }}>
@@ -197,6 +202,10 @@ export const pageQuery = graphql`
                 summary {
                     summary
                 }
+            }
+            splashImage {
+                gatsbyImageData(width: 1920, layout: FULL_WIDTH, quality: 100, resizingBehavior: FILL)
+                title
             }
         }
     }

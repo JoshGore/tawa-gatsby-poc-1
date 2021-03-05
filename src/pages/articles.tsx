@@ -17,6 +17,7 @@ import Event from '../components/event';
 import ArticleListEntry from '../components/articleListEntry';
 import FullBleedHeading from '../components/fullBleedHeading';
 import { string } from 'prop-types';
+import Heading from '../components/heading';
 
 interface IndexPageProps extends PageProps {
     data: {
@@ -36,7 +37,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
     return (
         <Layout>
             <SEO title="Articles" />
-            <FullBleedHeading title="All Articles" subtitle="subtitle" />
+            <Heading title="All Articles" subtitle="subtitle" type='simple' />
             <Container disableGutters={true}>
                 <Paper>
                     {data.allContentfulPost.nodes.map(post => (

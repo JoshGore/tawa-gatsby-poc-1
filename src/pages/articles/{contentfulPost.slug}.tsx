@@ -24,7 +24,8 @@ import {
 
 import Layout from '../../components/layout';
 import SEO from '../../components/seo';
-import FullBleedHeading from '../../components/fullBleedHeading';
+// import FullBleedHeading from '../../components/fullBleedHeading';
+import Heading from '../../components/heading';
 
 interface ArticlePageProps extends PageProps {
     data: {
@@ -39,6 +40,8 @@ interface ArticlePageProps extends PageProps {
                 references: [];
             };
             splashImage: { gatsbyImageData: IGatsbyImageData; title: string };
+            headerType: 'simple' | 'full bleed';
+            headerTextColor: string;
         };
     };
 }
@@ -47,11 +50,14 @@ const IndexPage: React.FC<ArticlePageProps> = ({ data }) => {
     return (
         <Layout>
             <SEO title={data.contentfulPost.title} />
-            <FullBleedHeading
+            
+            <Heading
                 title={data.contentfulPost.title}
                 subtitle={data.contentfulPost.summary.summary}
                 image={data.contentfulPost.splashImage.gatsbyImageData}
                 alt={data.contentfulPost.splashImage.title}
+                type={data.contentfulPost.headerType}
+                textColor={data.contentfulPost.headerTextColor || 'whitesmoke'}
             />
             <Container disableGutters={true}>
                 <Paper>{renderRichText(data.contentfulPost.body)}</Paper>
@@ -77,6 +83,8 @@ export const query = graphql`
                 gatsbyImageData(width: 1920, layout: FULL_WIDTH, quality: 100, resizingBehavior: FILL)
                 title
             }
+            headerType
+            headerTextColor
         }
     }
 `;
