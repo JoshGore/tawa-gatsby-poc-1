@@ -17,6 +17,20 @@ import FullBleedHeading from '../components/fullBleedHeading';
 
 interface IndexPageProps extends PageProps {
     data: {
+        contentfulPage: {
+            title: string;
+            subtitle: {
+                subtitle: string;
+            };
+            stickyPostSubTitle: string;
+            stickypost: {
+                slug: string;
+                title: string;
+                summary: {
+                    summary: string;
+                };
+            };
+        };
         allContentfulEvent: {
             nodes: {
                 presenter: string;
@@ -51,21 +65,29 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
             />
             <Container disableGutters={true}>
                 <Paper style={{ width: '100%' }}>
-                    <Typography variant="subtitle1">Who Are We?</Typography>
+                    <Typography variant="subtitle1">
+                        {data.contentfulPage.stickyPostSubTitle}
+                    </Typography>
                     <Typography variant="h2">
-                        The Tawa Christadelphians
+                        {data.contentfulPage.stickypost.title}
                     </Typography>
                     <Typography variant="subtitle2">
                         <b>6 Minute Read</b> | Christadelphians • Doctrine •
                         Fundamentals
                     </Typography>
                     <Typography variant="body1">
-                        ipsum dolor sit amet consectetur, adipisicing elit.
-                        Accusantium nostrum eaque repellendus ad sint illum quo
-                        officiis! Hic, iusto nulla sint dolorum voluptatum quod
-                        quos dolores placeat veniam saepe obcaecati!
+                        {data.contentfulPage.stickypost.summary.summary}
                     </Typography>
-                    <Button variant="contained" disabled>Learn More</Button>
+                    <Button
+                        variant="contained"
+                        onClick={() =>
+                            navigate(
+                                `/articles/${data.contentfulPage.stickypost.slug}`
+                            )
+                        }
+                    >
+                        Learn More
+                    </Button>
                 </Paper>
                 <Paper>
                     <Grid
@@ -102,7 +124,16 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                     <Typography variant="body1">
                         {data.allContentfulPost.nodes[0].summary.summary}
                     </Typography>
-                    <Button variant="contained" onClick={() => navigate(`/articles/${data.allContentfulPost.nodes[0].slug}`)}>View</Button>
+                    <Button
+                        variant="contained"
+                        onClick={() =>
+                            navigate(
+                                `/articles/${data.allContentfulPost.nodes[0].slug}`
+                            )
+                        }
+                    >
+                        View
+                    </Button>
                     <Button
                         variant="contained"
                         onClick={() => navigate('/articles/')}
@@ -152,6 +183,20 @@ export const pageQuery = graphql`
                     summary
                 }
                 slug
+            }
+        }
+        contentfulPage(type: {}, slug: { eq: "/" }) {
+            title
+            subtitle {
+                subtitle
+            }
+            stickyPostSubTitle
+            stickypost {
+                slug
+                title
+                summary {
+                    summary
+                }
             }
         }
     }

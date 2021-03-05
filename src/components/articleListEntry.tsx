@@ -16,7 +16,7 @@ const ArticleListEntry: React.FC<IArticleListEntry> = ({
 }) => {
     // slug link
     return (
-        <Grid container>
+        <Grid container style={{marginBottom: 20}}>
             <Grid item>
                 <Typography variant="subtitle2">
                     Basics • The Kingdom
