@@ -1,6 +1,6 @@
 module.exports = {
     siteMetadata: {
-        title: `Tawa Christadelphian Ecclesia`,
+        title: `Tawa Christadelphians`,
         description: `For as truly as I live all the earth shall be filled with the glory of Yahweh`,
         author: `Joshua Gore`,
     },
