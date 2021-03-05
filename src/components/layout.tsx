@@ -5,7 +5,7 @@ import Header from './header';
 import './layout.css';
 import { Container, Typography, Link } from '@material-ui/core';
 import FullBleedHeading from './fullBleedHeading';
-import { GatsbyImageProps } from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import DefaultFooter from '../components/defaultFooter';
 
 interface ILayout {
