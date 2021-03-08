@@ -5,6 +5,7 @@ module.exports = {
         author: `Joshua Gore`,
     },
     plugins: [
+        `gatsby-plugin-material-ui`,
         `gatsby-plugin-sharp`,
         `gatsby-plugin-image`,
         `gatsby-plugin-react-helmet`,

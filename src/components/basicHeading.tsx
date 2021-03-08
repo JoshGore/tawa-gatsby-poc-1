@@ -24,7 +24,7 @@ const FullBleedHeading: React.FC<IBasicHeading> = ({
     return (
         <Container disableGutters={true}>
             <Typography variant="h1">{title}</Typography>
-            <Typography variant="subtitle1">{subtitle}</Typography>
+            <Typography variant="subtitle1"><i>{subtitle}</i></Typography>
             {image && (
                 <div
                     style={{
