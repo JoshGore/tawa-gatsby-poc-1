@@ -9,6 +9,7 @@ module.exports = {
         `gatsby-plugin-sharp`,
         `gatsby-plugin-image`,
         `gatsby-plugin-react-helmet`,
+        `gatsby-plugin-netlify-cache`,
         {
             resolve: `gatsby-source-filesystem`,
             options: {
