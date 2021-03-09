@@ -19,7 +19,8 @@ import { IGatsbyImageData } from 'gatsby-plugin-image';
 interface IndexPageProps extends PageProps {
     data: {
         contentfulPage: {
-            splashImage?: { gatsbyImageData: IGatsbyImageData; title: string };
+            // optional?
+            splashImage: { gatsbyImageData: IGatsbyImageData; title: string };
             title: string;
             subtitle: {
                 subtitle: string;

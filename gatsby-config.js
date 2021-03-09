@@ -5,7 +5,13 @@ module.exports = {
         author: `Joshua Gore`,
     },
     plugins: [
-        `gatsby-plugin-material-ui`,
+        // `gatsby-plugin-material-ui`,
+        {
+            resolve: `gatsby-plugin-material-ui`,
+            options: {
+                disableAutoprefixing: true,
+            },
+        },
         `gatsby-plugin-sharp`,
         `gatsby-plugin-image`,
         `gatsby-plugin-react-helmet`,
