@@ -9,7 +9,9 @@
       "isolatedModules": true,
       "esModuleInterop": true,
       "noUnusedLocals": false,
-      "allowJs": true
+      "allowJs": true,
+      "jsxImportSource": "@emotion/react"
     },
+    "files": ["src/twin.d.ts"],
     "exclude": ["node_modules", "public", ".cache"]
   }

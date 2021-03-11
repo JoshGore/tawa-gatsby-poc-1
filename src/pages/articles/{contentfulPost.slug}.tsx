@@ -1,30 +1,11 @@
 import React from 'react';
 import { graphql, Link, PageProps } from 'gatsby';
-import {
-    ContentfulRichTextGatsbyReference,
-    renderRichText,
-    RenderRichTextData,
-} from 'gatsby-source-contentful/rich-text';
+import { renderRichText } from 'gatsby-source-contentful/rich-text';
 
-import {
-    Paper,
-    Typography,
-    Button,
-    Grid,
-    TextField,
-    Container,
-} from '@material-ui/core';
-
-import {
-    GatsbyImage,
-    getImage,
-    GatsbyImageProps,
-    IGatsbyImageData,
-} from 'gatsby-plugin-image';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 
 import Layout from '../../components/layout';
 import SEO from '../../components/seo';
-// import FullBleedHeading from '../../components/fullBleedHeading';
 import Heading from '../../components/heading';
 
 interface ArticlePageProps extends PageProps {
@@ -50,7 +31,7 @@ const IndexPage: React.FC<ArticlePageProps> = ({ data }) => {
     return (
         <Layout>
             <SEO title={data.contentfulPost.title} />
-            
+
             <Heading
                 title={data.contentfulPost.title}
                 subtitle={data.contentfulPost.summary.summary}
@@ -59,9 +40,9 @@ const IndexPage: React.FC<ArticlePageProps> = ({ data }) => {
                 type={data.contentfulPost.headerType}
                 textColor={data.contentfulPost.headerTextColor || 'whitesmoke'}
             />
-            <Container disableGutters={true}>
-                <Paper>{renderRichText(data.contentfulPost.body)}</Paper>
-            </Container>
+            <div>
+                <div>{renderRichText(data.contentfulPost.body)}</div>
+            </div>
         </Layout>
     );
 };
@@ -80,7 +61,12 @@ export const query = graphql`
                 raw
             }
             splashImage {
-                gatsbyImageData(width: 1920, layout: FULL_WIDTH, quality: 100, resizingBehavior: FILL)
+                gatsbyImageData(
+                    width: 1920
+                    layout: FULL_WIDTH
+                    quality: 100
+                    resizingBehavior: FILL
+                )
                 title
             }
             headerType

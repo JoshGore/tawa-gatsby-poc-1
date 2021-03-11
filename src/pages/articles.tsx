@@ -1,22 +1,10 @@
 import React from 'react';
 import { graphql, Link, PageProps } from 'gatsby';
-
-import {
-    Paper,
-    Typography,
-    Button,
-    Grid,
-    TextField,
-    Container,
-} from '@material-ui/core';
-
+import 'twin.macro';
+import tw from 'twin.macro';
 import Layout from '../components/layout';
-import Image from '../components/image';
 import SEO from '../components/seo';
-import Event from '../components/event';
 import ArticleListEntry from '../components/articleListEntry';
-import FullBleedHeading from '../components/fullBleedHeading';
-import { string } from 'prop-types';
 import Heading from '../components/heading';
 
 interface IndexPageProps extends PageProps {
@@ -34,21 +22,31 @@ interface IndexPageProps extends PageProps {
 }
 
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
+    // dropshadow and gradeint
     return (
         <Layout>
             <SEO title="Articles" />
-            <Heading title="All Articles" subtitle="subtitle" type='simple' />
-            <Container disableGutters={true}>
-                <Paper>
-                    {data.allContentfulPost.nodes.map(post => (
-                        <ArticleListEntry
-                            title={post.title}
-                            summary={post.summary.summary}
-                            slug={post.slug}
-                        ></ArticleListEntry>
-                    ))}
-                </Paper>
-            </Container>
+            <div tw="bg-gradient-to-t from-gray-200 p-2">
+                <Heading
+                    title="All Articles"
+                    subtitle="subtitle"
+                    type="simple"
+                />
+                <div tw="bg-gradient-to-t from-gray-100">
+                    <div tw="rounded-lg bg-white shadow-sm pt-5">
+                        {data.allContentfulPost.nodes.map((post, i) => (
+                            <ArticleListEntry
+                                title={post.title}
+                                summary={post.summary.summary}
+                                slug={post.slug}
+                                isLast={
+                                    data.allContentfulPost.nodes.length == i + 1
+                                }
+                            ></ArticleListEntry>
+                        ))}
+                    </div>
+                </div>
+            </div>
         </Layout>
     );
 };

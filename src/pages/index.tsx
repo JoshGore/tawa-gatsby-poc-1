@@ -1,14 +1,7 @@
 import React from 'react';
 import { graphql, Link, PageProps, navigate } from 'gatsby';
-
-import {
-    Paper,
-    Typography,
-    Button,
-    Grid,
-    TextField,
-    Container,
-} from '@material-ui/core';
+import 'twin.macro';
+import tw from 'twin.macro';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
@@ -69,47 +62,40 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                 textColor="white"
                 image={data.contentfulPage.splashImage?.gatsbyImageData}
             />
-            <Container disableGutters={true}>
-                <Paper style={{ width: '100%' }}>
-                    <Typography variant="subtitle1">
+            <div>
+                <div style={{ width: '100%' }}>
+                    <p tw="text-gray-900 font-sans font-semibold">
                         {data.contentfulPage.stickyPostSubTitle}
-                    </Typography>
-                    <Typography variant="h2">
+                    </p>
+                    <h2 tw="text-gray-900 text-4xl">
                         {data.contentfulPage.stickypost.title}
-                    </Typography>
-                    <Typography variant="subtitle2">
+                    </h2>
+                    <p>
                         <b>6 Minute Read</b> | Christadelphians • Doctrine •
                         Fundamentals
-                    </Typography>
-                    <Typography variant="body1">
-                        {data.contentfulPage.stickypost.summary.summary}
-                    </Typography>
-                    <Button
-                        variant="contained"
-                        onClick={() =>
-                            navigate(
-                                `/articles/${data.contentfulPage.stickypost.slug}`
-                            )
-                        }
+                    </p>
+                    <p>{data.contentfulPage.stickypost.summary.summary}</p>
+                    <Link
+                        tw="bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 rounded-sm shadow hover:shadow-md focus:shadow-md px-4 py-2 uppercase text-sm"
+                        to={`/articles/${data.contentfulPage.stickypost.slug}`}
                     >
                         Learn More
-                    </Button>
-                </Paper>
-                <Paper>
-                    <Grid
-                        container
+                    </Link>
+                </div>
+                <div>
+                    <div
                         style={{
                             marginTop: '10px',
                             borderBottom: '1px solid #f1f1f1',
                             padding: 10,
                         }}
                     >
-                        <Grid item>
-                            <Typography variant="h2">
+                        <div>
+                            <h2 tw="text-gray-900 text-4xl">
                                 What's coming up?
-                            </Typography>
-                        </Grid>
-                    </Grid>
+                            </h2>
+                        </div>
+                    </div>
                     {data.allContentfulEvent.nodes.map(event => (
                         <Event
                             title={event.title}
@@ -118,52 +104,51 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                             datetime={new Date(event.date)}
                         ></Event>
                     ))}
-                </Paper>
-                <Paper style={{ width: '100%' }}>
-                    <Typography variant="subtitle1">Latest</Typography>
-                    <Typography variant="h2">
+                </div>
+                <div style={{ width: '100%' }}>
+                    <p tw="text-gray-900 font-sans font-semibold">Latest</p>
+                    <h2 tw="text-gray-900 text-4xl">
                         {data.allContentfulPost.nodes[0].title}
-                    </Typography>
-                    <Typography variant="subtitle2">
+                    </h2>
+                    <p>
                         <b>45 Minute Video</b> | Prophecy • Current Events
-                    </Typography>
-                    <Typography variant="body1">
-                        {data.allContentfulPost.nodes[0].summary.summary}
-                    </Typography>
-                    <Button
-                        variant="contained"
-                        onClick={() =>
-                            navigate(
-                                `/articles/${data.allContentfulPost.nodes[0].slug}`
-                            )
-                        }
+                    </p>
+                    <p>{data.allContentfulPost.nodes[0].summary.summary}</p>
+                    <Link
+                        tw="bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 rounded-sm shadow hover:shadow-md focus:shadow-md px-4 py-2 uppercase text-sm"
+                        to={`/articles/${data.allContentfulPost.nodes[0].slug}`}
                     >
                         View
-                    </Button>
-                    <Button
-                        variant="contained"
-                        onClick={() => navigate('/articles/')}
+                    </Link>
+                    <Link
+                        tw="bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 rounded-sm shadow hover:shadow-md focus:shadow-md px-4 py-2 uppercase text-sm"
+                        to={'/articles/'}
                     >
                         More
-                    </Button>
-                </Paper>
-                <Paper>
-                    <h2>Stay in Touch</h2>
+                    </Link>
+                </div>
+                <div>
+                    <h2 tw="text-gray-900 text-4xl">Stay in Touch</h2>
                     <form>
-                        <TextField
-                            variant="outlined"
-                            label="Your Name"
-                            fullWidth
-                        ></TextField>
-                        <TextField
-                            variant="outlined"
-                            label="Your Email"
-                            fullWidth
-                        ></TextField>
-                        <Button variant="contained">Subscribe</Button>
+                        <input
+                            tw="w-full p-2"
+                            type="text"
+                            placeholder="Your Name"
+                        ></input>
+                        <input
+                            tw="w-full p-2"
+                            type="text"
+                            placeholder="Your Email"
+                        ></input>
+                        <button
+                            tw="bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 rounded-sm shadow hover:shadow-md focus:shadow-md px-4 py-2 uppercase text-sm"
+                            disabled
+                        >
+                            Subscribe
+                        </button>
                     </form>
-                </Paper>
-            </Container>
+                </div>
+            </div>
         </Layout>
     );
 };
@@ -205,7 +190,12 @@ export const pageQuery = graphql`
                 }
             }
             splashImage {
-                gatsbyImageData(width: 1920, layout: FULL_WIDTH, quality: 100, resizingBehavior: FILL)
+                gatsbyImageData(
+                    width: 1920
+                    layout: FULL_WIDTH
+                    quality: 100
+                    resizingBehavior: FILL
+                )
                 title
             }
         }

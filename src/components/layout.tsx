@@ -1,11 +1,8 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-
+import tw, { GlobalStyles } from 'twin.macro';
+import 'twin.macro';
 import Header from './header';
-import './layout.css';
-import { Container, Typography, Link } from '@material-ui/core';
-import FullBleedHeading from './fullBleedHeading';
-import { GatsbyImage } from "gatsby-plugin-image";
 import DefaultFooter from '../components/defaultFooter';
 
 interface ILayout {
@@ -25,6 +22,7 @@ const Layout: React.FC<ILayout> = ({ children, footer }) => {
 
     return (
         <>
+        <GlobalStyles />
             <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
             <main>{children}</main>
             <div

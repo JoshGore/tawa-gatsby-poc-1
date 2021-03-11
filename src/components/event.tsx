@@ -1,7 +1,6 @@
-import { Grid, Typography } from '@material-ui/core';
 import React from 'react';
-import styled from '@emotion/styled';
-import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
+import 'twin.macro';
+import tw from 'twin.macro';
 
 interface IEvent {
     title: string;
@@ -17,66 +16,20 @@ const Event: React.FC<IEvent> = ({
     description,
 }) => {
     return (
-        <Grid container style={{ marginTop: '10px', borderBottom: "1px solid #f1f1f1", padding: 10 }}>
-            <Grid item>
-                <Grid
-                    container
-                    direction="column"
-                    alignItems="center"
-                    style={{
-                        height: '100%',
-                        width: '100px',
-                        fontFamily:
-                            '"Roboto", "Helvetica", "Arial", sans-serif',
-                    }}
-                >
-                    <Grid item>
-                        <span
-                            style={{
-                                fontSize: '40px',
-                                lineHeight: 1,
-                                textAlign: 'center',
-                            }}
-                        >
-                            {datetime.getDate().toString().padStart(2, '0')}
-                        </span>
-                    </Grid>
-                    <Grid item>
-                        <span
-                            style={{
-                                fontSize: '25px',
-                                lineHeight: 0.9,
-                                textAlign: 'center',
-                            }}
-                        >
-                            {datetime.toLocaleString('default', {
-                                month: 'short',
-                            })}
-                        </span>
-                    </Grid>
-                </Grid>
-            </Grid>
-            <Grid item xs>
-                <h3
-                    style={{
-                        fontSize: '2rem',
-                        fontFamily:
-                            '"Roboto", "Helvetica", "Arial", sans-serif',
-                        fontWeight: 400,
-                        lineHeight: 1,
-                        marginBottom: '0.5rem',
-                    }}
-                >
-                    {title}
-                </h3>
-                <p style={{
-                        fontSize: '1rem',
-                        fontFamily:
-                            '"Roboto", "Helvetica", "Arial", sans-serif',
-                        fontWeight: 500,
-                        lineHeight: 1,
-                        marginBottom: '0.5rem',
-                    }}>
+        <div tw="flex py-2 border-b">
+            <div tw="text-center px-4 font-medium tracking-wider">
+                <p tw="text-3xl leading-none">
+                    {datetime.getDate().toString().padStart(2, '0')}
+                </p>
+                <p tw="text-xl leading-none">
+                    {datetime.toLocaleString('default', {
+                        month: 'short',
+                    })}
+                </p>
+            </div>
+            <div>
+                <h3 tw="text-gray-900 font-sans text-xl font-bold">{title}</h3>
+                <p tw="text-gray-600 font-sans text-sm">
                     <b>
                         {datetime.toLocaleString('en-US', {
                             hour: 'numeric',
@@ -84,18 +37,11 @@ const Event: React.FC<IEvent> = ({
                             hour12: true,
                         })}
                     </b>{' '}
-                   | Tawa Christadelphian Ecclesia • {presenter}
+                    | Tawa Christadelphian Ecclesia • {presenter}
                 </p>
-                <p style={{
-                        fontSize: '1rem',
-                        fontFamily:
-                            '"Roboto", "Helvetica", "Arial", sans-serif',
-                        fontWeight: 400,
-                        lineHeight: 1,
-                        marginBottom: '0.25rem',
-                    }}>{description}</p>
-            </Grid>
-        </Grid>
+                <p tw="text-gray-900 font-sans text-sm">{description}</p>
+            </div>
+        </div>
     );
 };
 

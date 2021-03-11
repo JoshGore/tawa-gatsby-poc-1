@@ -1,11 +1,6 @@
-import { Typography } from '@material-ui/core';
 import React from 'react';
-import Image from './image';
 import {
-    GatsbyImage,
-    getImage,
-    GatsbyImageProps,
-    IGatsbyImageData,
+    IGatsbyImageData
 } from 'gatsby-plugin-image';
 import FullBleedHeading from './fullBleedHeading';
 import BasicHeading from './basicHeading';

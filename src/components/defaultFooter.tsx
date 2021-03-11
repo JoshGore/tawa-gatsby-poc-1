@@ -1,4 +1,3 @@
-import { Container, Typography } from '@material-ui/core';
 import { Link } from 'gatsby';
 import React from 'react';
 
@@ -12,9 +11,9 @@ const DefaultFooter: React.FC = () => {
                     color: '#a0a09f',
                 }}
             >
-                <Container disableGutters={true} style={{}}>
+                <div>
                     <div style={{ paddingTop: '10px', paddingBottom: '10px' }}>
-                        <Typography variant="h2">More Info</Typography>
+                        <h2>More Info</h2>
                         <Link to="/">Home</Link>
                         <br />
                         <Link to="#">About Us</Link>
@@ -25,7 +24,7 @@ const DefaultFooter: React.FC = () => {
                         <br />© {new Date().getFullYear()}, Tawa Christadelphian
                         Ecclesia
                     </div>
-                </Container>
+                </div>
             </div>
             <div
                 style={{

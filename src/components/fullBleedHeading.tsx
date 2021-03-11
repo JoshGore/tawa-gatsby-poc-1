@@ -1,12 +1,11 @@
-import { Typography } from '@material-ui/core';
 import React from 'react';
-import Image from './image';
 import {
     GatsbyImage,
-    getImage,
-    GatsbyImageProps,
     IGatsbyImageData,
 } from 'gatsby-plugin-image';
+
+import 'twin.macro';
+import tw, { css } from 'twin.macro';
 
 interface IFullBleedHeading {
     title: string;
@@ -49,8 +48,8 @@ const FullBleedHeading: React.FC<IFullBleedHeading> = ({
                     color: textColor,
                 }}
             >
-                <Typography variant="h1">{title}</Typography>
-                <Typography variant="subtitle1">{subtitle}</Typography>
+            <h1 tw="text-7xl font-bold font-serif">{title}</h1>
+            <p tw="text-2xl">{subtitle}</p>
             </div>
         </div>
     );

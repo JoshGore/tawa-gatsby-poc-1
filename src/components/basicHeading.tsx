@@ -1,12 +1,7 @@
-import { Container, Typography } from '@material-ui/core';
 import React from 'react';
-import Image from './image';
-import {
-    GatsbyImage,
-    getImage,
-    GatsbyImageProps,
-    IGatsbyImageData,
-} from 'gatsby-plugin-image';
+import 'twin.macro';
+import tw from 'twin.macro';
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 
 interface IBasicHeading {
     title: string;
@@ -22,9 +17,9 @@ const FullBleedHeading: React.FC<IBasicHeading> = ({
     alt,
 }) => {
     return (
-        <Container disableGutters={true}>
-            <Typography variant="h1">{title}</Typography>
-            <Typography variant="subtitle1"><i>{subtitle}</i></Typography>
+        <div tw="pt-8 pb-6">
+            <h1 tw="text-7xl font-bold font-serif">{title}</h1>
+            <p tw="text-2xl">{subtitle}</p>
             {image && (
                 <div
                     style={{
@@ -47,7 +42,7 @@ const FullBleedHeading: React.FC<IBasicHeading> = ({
                     />
                 </div>
             )}
-        </Container>
+        </div>
     );
 };
 
