@@ -49,6 +49,19 @@ interface IndexPageProps extends PageProps {
     };
 }
 
+const Button: React.FC<{ to: string }> = ({ to, children }) => (
+    <Link
+        tw="bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 rounded-sm shadow hover:shadow-md focus:shadow-md px-4 py-2 uppercase text-sm transition-all block text-center"
+        to={to}
+    >
+        {children}
+    </Link>
+);
+
+const Card: React.FC = ({ children }) => (
+    <div tw="bg-white rounded-lg shadow-xl px-5 py-5 mb-5 sm:mb-10">{children}</div>
+);
+
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
     return (
         <Layout>
@@ -62,91 +75,98 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                 textColor="white"
                 image={data.contentfulPage.splashImage?.gatsbyImageData}
             />
-            <div>
-                <div style={{ width: '100%' }}>
-                    <p tw="text-gray-900 font-sans font-semibold">
-                        {data.contentfulPage.stickyPostSubTitle}
-                    </p>
-                    <h2 tw="text-gray-900 text-4xl">
-                        {data.contentfulPage.stickypost.title}
-                    </h2>
-                    <p>
-                        <b>6 Minute Read</b> | Christadelphians • Doctrine •
-                        Fundamentals
-                    </p>
-                    <p>{data.contentfulPage.stickypost.summary.summary}</p>
-                    <Link
-                        tw="bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 rounded-sm shadow hover:shadow-md focus:shadow-md px-4 py-2 uppercase text-sm"
-                        to={`/articles/${data.contentfulPage.stickypost.slug}`}
-                    >
-                        Learn More
-                    </Link>
-                </div>
-                <div>
-                    <div
-                        style={{
-                            marginTop: '10px',
-                            borderBottom: '1px solid #f1f1f1',
-                            padding: 10,
-                        }}
-                    >
-                        <div>
-                            <h2 tw="text-gray-900 text-4xl">
-                                What's coming up?
-                            </h2>
+            <div tw="bg-gradient-to-t from-gray-200 to-gray-50 py-10 px-2">
+                <div tw="max-w-screen-sm mx-auto">
+                    <Card>
+                        <p tw="text-gray-900 font-sans font-semibold">
+                            {data.contentfulPage.stickyPostSubTitle}
+                        </p>
+                        <h2 tw="text-gray-900 text-4xl">
+                            {data.contentfulPage.stickypost.title}
+                        </h2>
+                        <p>
+                            <b>6 Minute Read</b> | Christadelphians • Doctrine •
+                            Fundamentals
+                        </p>
+                        <p tw="py-5">
+                            {data.contentfulPage.stickypost.summary.summary}
+                        </p>
+                        <div tw="grid">
+                            <div tw="justify-self-end">
+                                <Button
+                                    to={`/articles/${data.contentfulPage.stickypost.slug}`}
+                                >
+                                    Learn More
+                                </Button>
+                            </div>
                         </div>
-                    </div>
-                    {data.allContentfulEvent.nodes.map(event => (
-                        <Event
-                            title={event.title}
-                            presenter={event.presenter}
-                            description={event.description.description}
-                            datetime={new Date(event.date)}
-                        ></Event>
-                    ))}
-                </div>
-                <div style={{ width: '100%' }}>
-                    <p tw="text-gray-900 font-sans font-semibold">Latest</p>
-                    <h2 tw="text-gray-900 text-4xl">
-                        {data.allContentfulPost.nodes[0].title}
-                    </h2>
-                    <p>
-                        <b>45 Minute Video</b> | Prophecy • Current Events
-                    </p>
-                    <p>{data.allContentfulPost.nodes[0].summary.summary}</p>
-                    <Link
-                        tw="bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 rounded-sm shadow hover:shadow-md focus:shadow-md px-4 py-2 uppercase text-sm"
-                        to={`/articles/${data.allContentfulPost.nodes[0].slug}`}
-                    >
-                        View
-                    </Link>
-                    <Link
-                        tw="bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 rounded-sm shadow hover:shadow-md focus:shadow-md px-4 py-2 uppercase text-sm"
-                        to={'/articles/'}
-                    >
-                        More
-                    </Link>
-                </div>
-                <div>
-                    <h2 tw="text-gray-900 text-4xl">Stay in Touch</h2>
-                    <form>
-                        <input
-                            tw="w-full p-2"
-                            type="text"
-                            placeholder="Your Name"
-                        ></input>
-                        <input
-                            tw="w-full p-2"
-                            type="text"
-                            placeholder="Your Email"
-                        ></input>
-                        <button
-                            tw="bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 rounded-sm shadow hover:shadow-md focus:shadow-md px-4 py-2 uppercase text-sm"
-                            disabled
+                    </Card>
+                    <Card>
+                        <div
+                            style={{
+                                marginTop: '10px',
+                                borderBottom: '1px solid #f1f1f1',
+                                padding: 10,
+                            }}
                         >
-                            Subscribe
-                        </button>
-                    </form>
+                            <div>
+                                <h2 tw="text-gray-900 text-4xl">
+                                    What's coming up?
+                                </h2>
+                            </div>
+                        </div>
+                        {data.allContentfulEvent.nodes.map(event => (
+                            <Event
+                                title={event.title}
+                                presenter={event.presenter}
+                                description={event.description.description}
+                                datetime={new Date(event.date)}
+                            ></Event>
+                        ))}
+                    </Card>
+                    <Card>
+                        <p tw="text-gray-900 font-sans font-semibold">Latest</p>
+                        <h2 tw="text-gray-900 text-4xl">
+                            {data.allContentfulPost.nodes[0].title}
+                        </h2>
+                        <p>
+                            <b>45 Minute Video</b> | Prophecy • Current Events
+                        </p>
+                        <p>{data.allContentfulPost.nodes[0].summary.summary}</p>
+                        <div tw="flex justify-between pt-5">
+                            <div tw="justify-self-start w-28">
+                                <Button
+                                    to={`/articles/${data.allContentfulPost.nodes[0].slug}`}
+                                >
+                                    View
+                                </Button>
+                            </div>
+                            <div tw="justify-self-end w-28">
+                                <Button to={`/articles/`}>More</Button>
+                            </div>
+                        </div>
+                    </Card>
+                    <Card>
+                        <h2 tw="text-gray-900 text-4xl">Stay in Touch</h2>
+                        <form>
+                            <input
+                                tw="w-full p-2"
+                                type="text"
+                                placeholder="Your Name"
+                            ></input>
+                            <input
+                                tw="w-full p-2"
+                                type="text"
+                                placeholder="Your Email"
+                            ></input>
+                            <button
+                                tw="bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 rounded-sm shadow hover:shadow-md focus:shadow-md px-4 py-2 uppercase text-sm"
+                                disabled
+                            >
+                                Subscribe
+                            </button>
+                        </form>
+                    </Card>
                 </div>
             </div>
         </Layout>

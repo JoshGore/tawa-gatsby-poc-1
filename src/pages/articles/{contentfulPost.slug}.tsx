@@ -1,8 +1,9 @@
 import React from 'react';
 import { graphql, Link, PageProps } from 'gatsby';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
-
 import { IGatsbyImageData } from 'gatsby-plugin-image';
+import 'twin.macro';
+import tw from 'twin.macro';
 
 import Layout from '../../components/layout';
 import SEO from '../../components/seo';
@@ -31,7 +32,6 @@ const IndexPage: React.FC<ArticlePageProps> = ({ data }) => {
     return (
         <Layout>
             <SEO title={data.contentfulPost.title} />
-
             <Heading
                 title={data.contentfulPost.title}
                 subtitle={data.contentfulPost.summary.summary}
@@ -40,8 +40,8 @@ const IndexPage: React.FC<ArticlePageProps> = ({ data }) => {
                 type={data.contentfulPost.headerType}
                 textColor={data.contentfulPost.headerTextColor || 'whitesmoke'}
             />
-            <div>
-                <div>{renderRichText(data.contentfulPost.body)}</div>
+            <div tw="prose max-w-screen-sm mx-auto font-serif text-gray-900 px-5">
+                {renderRichText(data.contentfulPost.body)}
             </div>
         </Layout>
     );

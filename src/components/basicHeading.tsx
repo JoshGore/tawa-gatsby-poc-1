@@ -17,14 +17,13 @@ const FullBleedHeading: React.FC<IBasicHeading> = ({
     alt,
 }) => {
     return (
-        <div tw="pt-8 pb-6">
-            <h1 tw="text-7xl font-bold font-serif">{title}</h1>
-            <p tw="text-2xl">{subtitle}</p>
+        <div tw="pt-8 max-w-screen-sm mx-auto px-5">
+            <h1 tw="text-4xl font-medium font-serif pb-6">{title}</h1>
+            <p tw="sm:text-xl text-gray-600 italic pb-6">{subtitle}</p>
             {image && (
                 <div
+                    tw="aspect-w-16 aspect-h-9 mb-6"
                     style={{
-                        width: '100%',
-                        paddingTop: '56.25%',
                         position: 'relative',
                     }}
                 >

@@ -29,7 +29,7 @@ const FullBleedHeading: React.FC<IFullBleedHeading> = ({
                 width: `100%`,
                 marginLeft: 0,
                 marginRight: 0,
-                marginBottom: `1.45rem`,
+                // marginBottom: `1.45rem`,
                 height: '60vh',
                 overflow: 'hidden',
             }}
@@ -48,8 +48,8 @@ const FullBleedHeading: React.FC<IFullBleedHeading> = ({
                     color: textColor,
                 }}
             >
-            <h1 tw="text-7xl font-bold font-serif">{title}</h1>
-            <p tw="text-2xl">{subtitle}</p>
+            <h1 tw="text-5xl sm:text-7xl font-bold font-serif">{title}</h1>
+            <p tw="sm:text-2xl">{subtitle}</p>
             </div>
         </div>
     );

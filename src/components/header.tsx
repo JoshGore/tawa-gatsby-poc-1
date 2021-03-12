@@ -1,8 +1,16 @@
 import { Link, navigate } from 'gatsby';
 import React, { useState } from 'react';
 import 'twin.macro';
-import tw, { css } from 'twin.macro';
+import tw, { css, styled } from 'twin.macro';
 import LogoBible from '../images/bible.svg';
+const Button: React.FC<{ to: string }> = ({ to, children }) => (
+    <Link
+        to={to}
+        tw="hover:bg-gray-100 focus:bg-gray-100 hover:text-gray-900 focus:text-gray-900 hover:shadow focus:shadow px-4 py-2 uppercase text-sm block text-gray-400 rounded-sm transition-all"
+    >
+        {children}
+    </Link>
+);
 const Header = ({ siteTitle }: { siteTitle: string }) => {
     const [open, setOpen] = useState(false);
     return (
@@ -12,7 +20,7 @@ const Header = ({ siteTitle }: { siteTitle: string }) => {
                     <img src={LogoBible} tw="h-12 m-0 p-0 px-2" />
                     <Link
                         to="/"
-                        tw="hover:bg-gray-100 focus:bg-gray-100 hover:text-gray-900 focus:text-gray-900 px-4 py-2 block text-gray-900 rounded-sm text-2xl font-semibold"
+                        tw="hover:bg-gray-100 focus:bg-gray-100 hover:text-gray-900 focus:text-gray-900 px-4 py-2 block text-gray-900 rounded text-2xl font-semibold transition-all"
                     >
                         <h1>{siteTitle}</h1>
                     </Link>
@@ -20,7 +28,7 @@ const Header = ({ siteTitle }: { siteTitle: string }) => {
                 <div tw="sm:hidden">
                     <button
                         type="button"
-                        tw="block text-gray-400 hover:text-gray-900 focus:text-gray-900"
+                        tw="block text-gray-400 hover:text-gray-900 focus:text-gray-900 transition-all focus:outline-none rounded focus:ring focus:ring-blue-300"
                         onClick={() => setOpen(!open)}
                     >
                         <svg tw="h-6 w-6 fill-current" viewBox="0 0 24 24">
@@ -41,21 +49,14 @@ const Header = ({ siteTitle }: { siteTitle: string }) => {
                 </div>
             </div>
             <div
-                tw="px-4 pt-2 pb-4 sm:flex sm:p-0"
+                tw="px-4 pt-2 pb-4 sm:flex sm:p-0 transition-all"
                 css={[open ? tw`block` : tw`hidden`]}
             >
-                <Link
-                    to="/articles"
-                    tw="hover:bg-gray-100 focus:bg-gray-100 hover:text-gray-900 focus:text-gray-900 hover:shadow focus:shadow px-4 py-2 uppercase text-sm block text-gray-400 rounded-sm"
-                >
-                    Articles
-                </Link>
-                <Link
-                    to="/articles/who-are-we"
-                    tw="hover:bg-gray-100 focus:bg-gray-100 hover:text-gray-900 focus:text-gray-900 hover:shadow focus:shadow px-4 py-2 uppercase text-sm block text-gray-400 rounded-sm"
-                >
-                    About
-                </Link>
+                <Button to="/articles">Articles</Button>
+                <Button to="/articles/who-are-we">Who Are We?</Button>
+                <Button to="/articles/gods-purpose-with-the-earth">
+                    Our Beliefs
+                </Button>
             </div>
         </header>
     );

@@ -32,18 +32,21 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                     subtitle="subtitle"
                     type="simple"
                 />
-                <div tw="bg-gradient-to-t from-gray-100">
-                    <div tw="rounded-lg bg-white shadow-sm pt-5">
-                        {data.allContentfulPost.nodes.map((post, i) => (
-                            <ArticleListEntry
-                                title={post.title}
-                                summary={post.summary.summary}
-                                slug={post.slug}
-                                isLast={
-                                    data.allContentfulPost.nodes.length == i + 1
-                                }
-                            ></ArticleListEntry>
-                        ))}
+                <div tw="rounded-lg bg-white shadow-sm pt-5 overflow-hidden max-w-screen-sm mx-auto">
+                    {data.allContentfulPost.nodes.map((post, i) => (
+                        <ArticleListEntry
+                            title={post.title}
+                            summary={post.summary.summary}
+                            slug={post.slug}
+                            isLast={
+                                data.allContentfulPost.nodes.length == i + 1
+                            }
+                        />
+                    ))}
+                    <div tw="px-4 py-2 border-gray-300">
+                        <button tw="bg-gray-100 hover:bg-gray-200 focus:bg-gray-100 text-gray-900 hover:shadow focus:shadow px-4 py-2 uppercase text-sm block rounded transition-all">
+                            More
+                        </button>
                     </div>
                 </div>
             </div>

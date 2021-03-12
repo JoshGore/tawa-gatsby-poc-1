@@ -12,6 +12,6 @@
       "allowJs": true,
       "jsxImportSource": "@emotion/react"
     },
-    "files": ["src/twin.d.ts"],
+    "files": ["twin.d.ts"],
     "exclude": ["node_modules", "public", ".cache"]
   }
