@@ -142,7 +142,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                                 </Button>
                             </div>
                             <div tw="justify-self-end w-28">
-                                <Button to={`/articles/`}>More</Button>
+                                <Button to={`/articles/`}>More Articles</Button>
                             </div>
                         </div>
                     </Card>
