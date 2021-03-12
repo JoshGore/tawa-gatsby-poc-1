@@ -96,7 +96,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                                 <Button
                                     to={`/articles/${data.contentfulPage.stickypost.slug}`}
                                 >
-                                    Learn More
+                                    More About Us
                                 </Button>
                             </div>
                         </div>

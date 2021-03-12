@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import 'twin.macro';
 import tw, { css, styled } from 'twin.macro';
 import LogoBible from '../images/bible.svg';
-const Button: React.FC<{ to: string }> = ({ to, children }) => (
+const NavLink: React.FC<{ to: string }> = ({ to, children }) => (
     <Link
         to={to}
-        tw="hover:bg-gray-100 focus:bg-gray-100 hover:text-gray-900 focus:text-gray-900 hover:shadow focus:shadow px-4 py-2 uppercase text-sm block text-gray-400 rounded-sm transition-all"
+        tw="hover:bg-gray-100 focus:bg-gray-100 hover:text-gray-900 focus:text-gray-900 hover:shadow focus:shadow px-4 py-2 uppercase text-sm block text-gray-500 rounded-sm transition-all"
     >
         {children}
     </Link>
@@ -53,11 +53,11 @@ const Header = ({ siteTitle }: { siteTitle: string }) => {
                 tw="px-4 pt-2 pb-4 sm:flex sm:p-0 transition-all"
                 css={[open ? tw`block` : tw`hidden`]}
             >
-                <Button to="/articles">Articles</Button>
-                <Button to="/articles/who-are-we">Who Are We?</Button>
-                <Button to="/articles/gods-purpose-with-the-earth">
+                <NavLink to="/articles">Articles</NavLink>
+                <NavLink to="/articles/who-are-we">Who Are We?</NavLink>
+                <NavLink to="/articles/gods-purpose-with-the-earth">
                     Our Beliefs
-                </Button>
+                </NavLink>
             </div>
         </header>
     );
