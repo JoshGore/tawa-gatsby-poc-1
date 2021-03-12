@@ -1,4 +1,4 @@
-import { Link, navigate } from 'gatsby';
+import { Link } from 'gatsby';
 import React, { useState } from 'react';
 import 'twin.macro';
 import tw, { css, styled } from 'twin.macro';

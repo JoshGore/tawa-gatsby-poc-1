@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, Link, PageProps, navigate } from 'gatsby';
+import { graphql, Link, PageProps } from 'gatsby';
 import 'twin.macro';
 import tw from 'twin.macro';
 
