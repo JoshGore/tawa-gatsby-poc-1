@@ -153,11 +153,13 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                                 tw="w-full p-2"
                                 type="text"
                                 placeholder="Your Name"
+                                aria-label="Your Name"
                             ></input>
                             <input
                                 tw="w-full p-2"
                                 type="text"
                                 placeholder="Your Email"
+                                aria-label="Your Email"
                             ></input>
                             <button
                                 tw="bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 rounded-sm shadow hover:shadow-md focus:shadow-md px-4 py-2 uppercase text-sm"
