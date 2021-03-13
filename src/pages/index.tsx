@@ -59,7 +59,9 @@ const Button: React.FC<{ to: string }> = ({ to, children }) => (
 );
 
 const Card: React.FC = ({ children }) => (
-    <div tw="bg-white rounded-lg shadow-xl px-5 py-5 mb-5 sm:mb-10">{children}</div>
+    <div tw="bg-white rounded-lg shadow-xl px-5 py-5 mb-5 sm:mb-10">
+        {children}
+    </div>
 );
 
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
@@ -134,14 +136,14 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                         </p>
                         <p>{data.allContentfulPost.nodes[0].summary.summary}</p>
                         <div tw="flex justify-between pt-5">
-                            <div tw="justify-self-start w-28">
+                            <div tw="justify-self-start w-36">
                                 <Button
                                     to={`/articles/${data.allContentfulPost.nodes[0].slug}`}
                                 >
                                     View
                                 </Button>
                             </div>
-                            <div tw="justify-self-end w-28">
+                            <div tw="justify-self-end w-36">
                                 <Button to={`/articles/`}>More Articles</Button>
                             </div>
                         </div>
@@ -162,7 +164,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                                 aria-label="Your Email"
                             ></input>
                             <button
-                                tw="bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 rounded-sm shadow hover:shadow-md focus:shadow-md px-4 py-2 uppercase text-sm"
+                                tw="bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 rounded-sm shadow hover:shadow-md focus:shadow-md px-4 py-2 uppercase text-sm transition-all"
                                 disabled
                             >
                                 Subscribe

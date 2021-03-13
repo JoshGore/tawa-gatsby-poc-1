@@ -1,7 +1,9 @@
 import React from 'react';
 import { graphql, Link, PageProps } from 'gatsby';
+import { BLOCKS } from '@contentful/rich-text-types';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
-import { IGatsbyImageData } from 'gatsby-plugin-image';
+import { Options } from '@contentful/rich-text-react-renderer';
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import 'twin.macro';
 import tw from 'twin.macro';
 
@@ -29,6 +31,16 @@ interface ArticlePageProps extends PageProps {
 }
 
 const IndexPage: React.FC<ArticlePageProps> = ({ data }) => {
+    const options: Options = {
+        renderNode: {
+            [BLOCKS.EMBEDDED_ASSET]: node => (
+                <GatsbyImage
+                    image={node.data.target.gatsbyImageData}
+                    alt={node.data.target.title}
+                />
+            ),
+        },
+    };
     return (
         <Layout>
             <SEO title={data.contentfulPost.title} />
@@ -41,7 +53,7 @@ const IndexPage: React.FC<ArticlePageProps> = ({ data }) => {
                 textColor={data.contentfulPost.headerTextColor || 'whitesmoke'}
             />
             <div tw="prose max-w-screen-sm mx-auto font-serif text-gray-900 px-5">
-                {renderRichText(data.contentfulPost.body)}
+                {renderRichText(data.contentfulPost.body, options)}
             </div>
         </Layout>
     );
@@ -49,6 +61,7 @@ const IndexPage: React.FC<ArticlePageProps> = ({ data }) => {
 
 export default IndexPage;
 
+// fix image query
 export const query = graphql`
     query($id: String) {
         contentfulPost(id: { eq: $id }) {
@@ -59,6 +72,20 @@ export const query = graphql`
             }
             body {
                 raw
+                references {
+                    ... on ContentfulAsset {
+                        __typename
+                        contentful_id
+                        gatsbyImageData(
+                            width: 1920
+                            layout: FULL_WIDTH
+                            quality: 100
+                            resizingBehavior: FILL
+                            placeholder: BLURRED
+                        )
+                        title
+                    }
+                }
             }
             splashImage {
                 gatsbyImageData(
