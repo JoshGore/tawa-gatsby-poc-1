@@ -23,9 +23,10 @@ interface ArticlePageProps extends PageProps {
                 raw: string;
                 references: [];
             };
-            splashImage: { gatsbyImageData: IGatsbyImageData; title: string };
+            splashImage?: { gatsbyImageData: IGatsbyImageData; title: string };
             headerType: 'simple' | 'full bleed';
             headerTextColor: string;
+            youTubeUrl: string;
         };
     };
 }
@@ -47,10 +48,11 @@ const IndexPage: React.FC<ArticlePageProps> = ({ data }) => {
             <Heading
                 title={data.contentfulPost.title}
                 subtitle={data.contentfulPost.summary.summary}
-                image={data.contentfulPost.splashImage.gatsbyImageData}
-                alt={data.contentfulPost.splashImage.title}
+                image={data.contentfulPost.splashImage?.gatsbyImageData}
+                alt={data.contentfulPost.splashImage?.title}
                 type={data.contentfulPost.headerType}
                 textColor={data.contentfulPost.headerTextColor || 'whitesmoke'}
+                url={data.contentfulPost.youTubeUrl}
             />
             <div tw="prose max-w-screen-sm mx-auto font-serif text-gray-900 px-5">
                 {renderRichText(data.contentfulPost.body, options)}
@@ -98,6 +100,7 @@ export const query = graphql`
             }
             headerType
             headerTextColor
+            youTubeUrl
         }
     }
 `;

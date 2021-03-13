@@ -1,17 +1,17 @@
 import React from 'react';
-import {
-    IGatsbyImageData
-} from 'gatsby-plugin-image';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 import FullBleedHeading from './fullBleedHeading';
 import BasicHeading from './basicHeading';
+import YouTubeHeading from './youTubeHeading';
 
 export interface IHeading {
     title: string;
     subtitle: string;
     image?: IGatsbyImageData;
     alt?: string;
-    type: 'full bleed' | 'simple';
+    type: 'full bleed' | 'simple' | 'YouTube';
     textColor?: string;
+    url?: string;
 }
 
 const Heading: React.FC<IHeading> = ({
@@ -21,6 +21,7 @@ const Heading: React.FC<IHeading> = ({
     alt,
     type,
     textColor,
+    url,
 }) => {
     return (
         <>
@@ -33,13 +34,16 @@ const Heading: React.FC<IHeading> = ({
                     textColor={textColor}
                 />
             )}
-            {(!image || type == 'simple') && (
+            {type != 'YouTube' && (!image || type == 'simple') && (
                 <BasicHeading
                     title={title}
                     subtitle={subtitle}
                     image={image}
                     alt={alt}
                 />
+            )}
+            {type == 'YouTube' && (
+                <YouTubeHeading title={title} subtitle={subtitle} url={url} />
             )}
         </>
     );
