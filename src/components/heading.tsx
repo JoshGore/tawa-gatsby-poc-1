@@ -2,7 +2,7 @@ import React from 'react';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import FullBleedHeading from './fullBleedHeading';
 import BasicHeading from './basicHeading';
-import YouTubeHeading from './youTubeHeading';
+import IFrameHeading from './iFrameHeading';
 
 export interface IHeading {
     title: string;
@@ -43,7 +43,7 @@ const Heading: React.FC<IHeading> = ({
                 />
             )}
             {type == 'YouTube' && (
-                <YouTubeHeading title={title} subtitle={subtitle} url={url} />
+                <IFrameHeading title={title} subtitle={subtitle} url={url} />
             )}
         </>
     );

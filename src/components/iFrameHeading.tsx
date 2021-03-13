@@ -3,19 +3,26 @@ import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 
 import 'twin.macro';
 import tw, { css } from 'twin.macro';
+import { string } from 'prop-types';
 
-interface IYouTubeHeading {
+interface IIframeHeading {
     title: string;
     subtitle: string;
     url: string;
 }
 
-const YouTubeHeading: React.FC<IYouTubeHeading> = ({
+const IframeHeading: React.FC<IIframeHeading> = ({
     title,
     subtitle,
     url,
 }) => {
-    // const processUrl = (url: String) => // if url has ? in it, add ref=0; otherwise add ? then ref = 0 (or rel=0) disables showing videos from other chanels
+    const processUrl = (url: string) => {
+        var urlEl = new URL(url);
+        if (!urlEl.searchParams.get('rel')) {
+            urlEl.searchParams.append('rel', '0');
+        }
+        return urlEl.toString();
+    };
     return (
         <>
             <div
@@ -31,7 +38,7 @@ const YouTubeHeading: React.FC<IYouTubeHeading> = ({
                 <iframe
                     height="100%"
                     width="100%"
-                    src={url}
+                    src={processUrl(url)}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -45,4 +52,4 @@ const YouTubeHeading: React.FC<IYouTubeHeading> = ({
     );
 };
 
-export default YouTubeHeading;
+export default IframeHeading;
